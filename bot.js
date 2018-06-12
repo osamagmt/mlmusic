@@ -204,7 +204,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
 }
 
-let prefix = '&';
+let prefix = '1';
 
 
 client.on('message', message => {
@@ -217,8 +217,6 @@ if (message.content.startsWith(prefix + 'help')) {
  .addField(`**${prefix}vol**`,"**لرفع صوت لاغنيه**")
  .addField(`**${prefix}stop**`,"**لـ اطفاء لاغنيه**")
  .addField(`**${prefix}skip**`,"**لـ نخطي لاغنيه**")
- .addField(`**${prefix}invite**`,"**لدعوة البوت الى سرفرك**")
- .addField(`**${prefix}support**`,"**سرفر الدعم الفني**")
 .setColor('RANDOM')
 	message.channel.sendEmbed(embed).then(m => m.delete(25000));
 
@@ -231,19 +229,6 @@ client.on('message', message => {
   	}
 });
 
-
-client.on('message' , message => {
-    if (message.content === (prefix + "invite")) {
-        if(!message.channel.guild) return message.reply('This Command is Only For Servers');
-     const embed = new Discord.RichEmbed()
- .setColor("RANDOM")
- .setThumbnail(client.user.avatarURL)
- .setAuthor(message.author.username, message.author.avatarURL)
- .setTitle('Click Here To Invite The Bot')
- .setURL('https://discordapp.com/oauth2/authorize?client_id=455393509097078784&scope=bot&permissions=9')
-  message.channel.sendEmbed(embed);
-   }
-});
 
 client.on('message', message => {
      if (message.content === (prefix + "bot")) {
@@ -259,45 +244,8 @@ client.on('message', message => {
     }
 });
 
-client.on('message', message => {
-  if (true) {
-if (message.content === (prefix + "support")) {
-     message.author.send('https://discord.gg/QUuxP9z').catch(e => console.log(e.stack));
-    }
-   } 
-  });
-  
-client.on('message', message => {
-     if (message.content === (prefix + "support")) {
-     let embed = new Discord.RichEmbed()
-  .setAuthor(message.author.username)
-  .setColor("#8650a7")
-  .addField("Done" , " تــــم ارســالك في الخــاص")
-
-
-
-  message.channel.sendEmbed(embed);
-    }
-});
-
-client.on("guildCreate", guild => {
-client.channels.get("455400626407473162").send(' ***  BOT  ***   **Join To**   ***[ ' + `${guild.name}` + ' ]***   ,   **  Owner  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
-});
-
-client.on("guildDelete", guild => {
-client.channels.get("455400626407473162").send(' ***  BOT  ***   **Leave From**   ***[ ' + `${guild.name}` + ' ]***   ,   **  Owner  **  ' + ' ***[ ' + '<@' + `${guild.owner.user.id}` + '>' + ' ]***  **|**  ***[ ' + '<' + `${guild.owner.user.username}` + '>' + ' ]***')
-});
-
-
-
-
-
-
-
-
-
 client.on('ready', () => {
-     client.user.setActivity("&help",{type: 'LISTENING'});
+     client.user.setActivity("1help",{type: 'LISTENING'});
 
 
 
