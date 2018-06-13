@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const { Client, Util } = require('discord.js');
 const client = new Discord.Client();
-const { TOKEN ,PREFIX, GOOGLE_API_KEY } = require('./config1');
+const { TOKEN ,PREFIX, GOOGLE_API_KEY } = require('./config');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
@@ -10,13 +10,15 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 
 const queue = new Map();
 
-
+client.on('ready', () => {
+    console.log('I am ready!');
+});
 
 client.on('warn', console.warn);
 
 client.on('error', console.error);
 
-
+client.on('ready', () => console.log('Yo this ready!'));
 
 // client.on('disconnect', () => console.log('I just disconnected, making sure you know, I will reconnect now...'));
 
