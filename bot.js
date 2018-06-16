@@ -249,7 +249,7 @@ client.on('message', message => {
 client.on('ready', () => {
      client.user.setActivity("1help",{type: 'LISTENING'});
 });
-var PREFIX = "1";
+
 client.on('message', message => {
   if (!message.content.startsWith(PREFIX)) return;
   var args = message.content.split(' ').slice(1);
