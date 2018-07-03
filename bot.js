@@ -212,7 +212,7 @@ let prefix = '1';
 
 client.on('message', message => {
 if (message.content.startsWith(prefix + 'help')) {
-	if (message.author.id !== "387953341713350677") return;
+	
 	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
 	let embed = new Discord.RichEmbed()
     .setAuthor(`${message.author.tag}`, message.author.avatarURL)
