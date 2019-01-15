@@ -16,7 +16,6 @@ client.on('ready', () => {
     console.log('I am ready!');
 });
 
-const youtube = new YouTube(GOOGLE_API_KEY);
 
 
 
