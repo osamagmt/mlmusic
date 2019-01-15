@@ -7,14 +7,14 @@ const ytdl = require('ytdl-core');
 const developers = ["","",""]
 const adminprefix = "#";
 let prefix = '1';
+const { TOKEN, PREFIX, GOOGLE_API_KEY } = require('./config1');
+
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 
 client.on('ready', () => {
     console.log('I am ready!');
 });
-
-const { TOKEN, PREFIX, GOOGLE_API_KEY } = require('./config1');
 
 const youtube = new YouTube(GOOGLE_API_KEY);
 
