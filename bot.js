@@ -1,11 +1,13 @@
 const Discord = require('discord.js');
 const { Client, Util } = require('discord.js');
 const client = new Discord.Client();
-const { TOKEN ,PREFIX, GOOGLE_API_KEY } = require('./config1');
+const { TOKEN , GOOGLE_API_KEY } = require('./config1');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
-
+const developers = ["","",""]
+const adminprefix = "#";
+let prefix = '1';
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 const queue = new Map();
@@ -26,7 +28,7 @@ client.on('ready', () => console.log('Yo this ready!'));
 
 client.on('message', async msg => { // eslint-disable-line
 	if (msg.author.bot) return undefined;
-	if (!msg.content.startsWith(PREFIX)) return undefined;
+	if (!msg.content.startsWith(prefix)) return undefined;
 
 	const args = msg.content.split(' ');
 	const searchString = args.slice(1).join(' ');
@@ -34,7 +36,7 @@ client.on('message', async msg => { // eslint-disable-line
 	const serverQueue = queue.get(msg.guild.id);
 
 	let command = msg.content.toLowerCase().split(" ")[0];
-	command = command.slice(PREFIX.length)
+	command = command.slice(prefix.length)
 
 	if (command === `play`) {
 		const voiceChannel = msg.member.voiceChannel;
@@ -207,7 +209,7 @@ function play(guild, song) {
 	serverQueue.textChannel.send(`بدء تشغيل: **${song.title}**`);
 }
 
-let prefix = '#';
+
 
 
 client.on('message', message => {
@@ -236,11 +238,9 @@ client.on('message', message => {
 
 
 client.on('ready', () => {
-     client.user.setActivity("1help",{type: 'LISTENING'});
+     client.user.setActivity(`${prefix}help`,{type: 'LISTENING'});
 });
 
-const developers = ["342678923177492481","410421617869455370",""]
-const adminprefix = "#";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
       if (!developers.includes(message.author.id)) return;
