@@ -188,6 +188,9 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		if (args > 5) return message.channel.send('***Volume : 1 / 5***');
+		if (args < 1) return message.channel.send('***Volume : 1 / 5***');
+		dispatcher.setVolume(1 * args / 5);
 
 		if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}**`);
 
