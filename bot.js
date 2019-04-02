@@ -61,7 +61,7 @@ client.on('message', async msg => { // eslint-disable-line
 
 	command = command.slice(PREFIX.length)
 
-	if (command === `play`,`p`,`شغل`) {
+	if (command === `play`) {
     
 		const voiceChannel = msg.member.voiceChannel;
         
@@ -196,6 +196,7 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 
 		return msg.channel.send(`I set the volume to: **${args[1]}**`);
+
 	} else if (command === `np`) {
 
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
@@ -212,7 +213,7 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 **Now playing:** ${serverQueue.songs[0].title}
 		`);
 
-	} else if (command === `pause`,`وقف`) {
+	} else if (command === `pause`) {
 
 		if (serverQueue && serverQueue.playing) {
 
