@@ -183,13 +183,19 @@ ${videos.map(video2 => `[**${++index} **] \`${video2.title}\``).join('\n')}`)
 
 		return undefined;
 
-	} else if(mess.startsWith(prefix + 'v','vol','volume')) {
-if (!VIP.includes(message.author.id)) return;
-if (!message.member.voiceChannel) return message.channel.send(':no_entry: **You need to be in the same voice channel to use this command**');
-if (args > 100) return message.channel.send('***Volume : 1 / 100***');
-if (args < 1) return message.channel.send('***Volume : 1 / 100***');
-dispatcher.setVolume(1 * args / 50);
-message.channel.sendMessage(`**#** \`Volume ${dispatcher.volume*50} %\` :ok_hand::skin-tone-2: `);
+	} else if (command === `vol`) {
+
+		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
+
+		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+
+		if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}**`);
+
+		serverQueue.volume = args[1];
+
+		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
+
+		return msg.channel.send(`I set the volume to: **${args[1]}**`);
 	} else if (command === `np`) {
 
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
