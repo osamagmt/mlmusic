@@ -4,9 +4,7 @@ const client = new Discord.Client();
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
-const developers = ["","",""]
-const adminprefix = "#";
-let prefix = '1';
+let prefix = '☆';
 const { TOKEN, PREFIX, GOOGLE_API_KEY } = require('./config1');
 
 const youtube = new YouTube(GOOGLE_API_KEY);
@@ -376,26 +374,6 @@ function play(guild, song) {
 
 
 
-
-
-
-client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) {
-	
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
-	let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
- .addField("**:musical_note:  اوامر الميوزك**","** **")
- .addField(`**${prefix}play**`,"**لـ تشغيل لاغنيه**")
- .addField(`**${prefix}vol**`,"**لرفع صوت لاغنيه**")
- .addField(`**${prefix}stop**`,"**لـ اطفاء لاغنيه**")
- .addField(`**${prefix}skip**`,"**لـ نخطي لاغنيه**")
-.setColor('RANDOM')
-	message.channel.sendEmbed(embed).then(m => m.delete(25000));
-
-}
-});
-
 client.on('message', message => {
     if (message.content === 'ping') {
     	message.channel.send('PONG!');
@@ -403,41 +381,79 @@ client.on('message', message => {
 });
 
 
+const VIP = ["440081527909515265","460976885036220426",""]
 
-client.on('ready', () => {
-     client.user.setActivity(`${prefix}help`,{type: 'LISTENING'});
-});
-
+const adminprefix = "☆";
 client.on('message', message => {
     var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!developers.includes(message.author.id)) return;
+      if (!VIP.includes(message.author.id)) return;
       
   if (message.content.startsWith(adminprefix + 'ply')) {
     client.user.setGame(argresult);
-      message.channel.send(`**✅   ${argresult}**`)
+      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
   } else 
-     if (message.content === (adminprefix + "leave")) {
+    if (message.content === (adminprefix + "Percie")) {
     message.guild.leave();        
   } else  
   if (message.content.startsWith(adminprefix + 'wt')) {
   client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.send(`**✅   ${argresult}**`)
+      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
   } else 
   if (message.content.startsWith(adminprefix + 'ls')) {
   client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'st')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/idk");
-      message.channel.send(`**✅**`)
-  }
-  if (message.content.startsWith(adminprefix + 'setname')) {
+      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+  } else     
+    if (message.content.startsWith(adminprefix + 'setname')) {
   client.user.setUsername(argresult).then
-      message.channel.send(`Changing The Name To ..**${argresult}** `)
-} else
-if (message.content.startsWith(adminprefix + 'setavatar')) {
+      message.channel.sendMessage(`**${argresult}** : Done :>`)
+  return message.reply("**You Can't Change Your Name ,Only After Two Hours :>**");
+  } else
+    if (message.content.startsWith(adminprefix + 'setavatar')) {
   client.user.setAvatar(argresult);
-    message.channel.send(`Changing The Avatar To :**${argresult}** `);
+    message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+        } else     
+  if (message.content.startsWith(adminprefix + 'st')) {
+    client.user.setGame(argresult, "https://www.twitch.tv/osama_gmt");
+      message.channel.sendMessage(`**:white_check_mark:   ${argresult}**`)
+  }});
+
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'help','مساعدة')) {
+	if (!VIP.includes(message.author.id)) return;
+	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
+	let embed = new Discord.RichEmbed()
+ .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+ .addField("**:musical_note:  اوامر الميوزك**","** **")
+ .addField(`**${prefix}play**`,"**لـ تشغيل لاغنيه**")
+ .addField(`**${prefix}vol**`,"**لرفع صوت لاغنيه**")
+ .addField(`**${prefix}stop**`,"**لـ اطفاء لاغنيه**")
+ .addField(`**${prefix}skip**`,"**لـ نخطي لاغنيه**")
+ .addField(`**${prefix}leave**`,"**لـ طرد البوت من الروم**")
+ .addField(`**${prefix}pause**`,"**لـ ايفاف الاغنية**")
+ .addField(`**${prefix}resume**`,"**لـ موآصلة الإغنية بعد إيقآفهآ مؤقتانيه**")
+ .setColor('RANDOM')
+	message.channel.sendEmbed(embed).then(m => m.delete(25000));
 }
 });
+
+client.on('message', message => {
+if (message.content.startsWith(prefix + 'admin','ادارة')) {
+	if (!VIP.includes(message.author.id)) return;
+	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
+	let embed = new Discord.RichEmbed()
+ .setAuthor(`${message.author.tag}`, message.author.avatarURL)
+ .addField("**:musical_note:  اوامر الميوزك**","** **")
+ .addField(`**${prefix}wt**`,"**لـ تغيير الواتشنق للبوت**")
+ .addField(`**${prefix}ls**`,"**لـ تغيير الليستنف للبوت**")
+ .addField(`**${prefix}st**`,"**لـ تغيير التسريمنق للبوت**")
+ .addField(`**${prefix}ply**`,"**لـ تغيير البلاينق للبوت**")
+ .addField(`**${prefix}setname**`,"**لـ تغيير اسم البوت**")
+ .addField(`**${prefix}setavatar**`,"**لـ تغيير صورة البوت**")
+ .addField(`**${prefix}Percie**`,"**لـ طرد البوت من سيرفر**")
+ .setColor('RANDOM')
+	message.channel.sendEmbed(embed).then(m => m.delete(25000));
+}
+});
+
+
 client.login(process.env.BOT_TOKEN);
